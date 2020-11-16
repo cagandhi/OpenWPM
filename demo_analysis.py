@@ -8,7 +8,7 @@ from sqlite3 import Error
 from os.path import abspath, dirname
 
 # define a list of sites to be analysed for each category
-sites_dir={'news': ['https://www.cnn.com','https://www.news.yahoo.com','https://www.washingtonpost.com'], 'shopping': [], 'sports': []}
+sites_dir={'news': ['https://www.cnn.com','https://www.news.yahoo.com','https://www.washingtonpost.com'], 'shopping': ['https://www.amazon.com/','https://www.alibaba.com/','https://www.ebay.com/'], 'sports': ['https://www.espn.com/','https://www.goal.com/','https://sports.yahoo.com/']}
 
 # analyse 4 metrics - no. of 1st-party and 3rd-party cookies, no. of 1st-party and 3rd-party http requests
 n_metrics=4
@@ -113,8 +113,8 @@ def run_analysis(time_folder_name):
     for category_name in os.listdir(time_path):
 
         # TODO: comment for final analysis
-        if category_name!='news':
-            continue
+        #if category_name!='news':
+        #    continue
 
         # for every extension/no extension
         category_path=time_path+'/'+category_name
@@ -159,5 +159,5 @@ def run_analysis(time_folder_name):
 
 
 if __name__ == '__main__':
-    time_folder_name='2020_11_16_01_58_46'
+    time_folder_name='2020_11_16_17_50_24'
     run_analysis(time_folder_name)
