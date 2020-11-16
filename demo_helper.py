@@ -2,17 +2,10 @@ from openwpm import CommandSequence, TaskManager
 from os.path import abspath, dirname	
 import time, datetime
 
-# The list of sites that we wish to crawl
-# NUM_BROWSERS = 1
-# sites = [	
-#     # "https://www.cnn.com",	
-#     "https://www.nytimes.com",	
-#     # "https://news.yahoo.com",	
-# ]
-
+# runs the OpenWPM instance for each config setup and stores data as a SQLite database
 def helper_run(save_path, sites, extension_flags):
     NUM_BROWSERS = 1
-    
+
     # Loads the default manager params
     # and NUM_BROWSERS copies of the default browser params
     manager_params, browser_params = TaskManager.load_default_params(NUM_BROWSERS)
@@ -37,25 +30,12 @@ def helper_run(save_path, sites, extension_flags):
         for ext, val in extension_flags.items():
             browser_params[i][ext]=val
 
-#     # Enable "do not track" in browser
-#     browser_params[i]["donottrack"] = True
-    # Enable "ghostery" in browser
-    # browser_params[i]["ghostery"] = True
-#     # Enable "disconnect" in browser
-#     browser_params[i]["disconnect"] = True
-#     # Enable "https-everywhere" in browser
-#     browser_params[i]["https-everywhere"] = True
-#     # Enable "ublock-origin" in browser
-#     browser_params[i]["ublock-origin"] = True
-#     # Enable "tracking-protection" in browser
-#     # browser_params[i]["tracking-protection"] = True
-
     # Launch only browser 0 headless
     browser_params[0]["display_mode"] = "headless"
 
     # Update TaskManager configuration (use this for crawl-wide settings)
-    manager_params["data_directory"] = save_path+'/' #dirname(dirname(abspath(__file__)))+"/crawls_"+time_str+"/"
-    manager_params["log_directory"] = save_path+'/' #dirname(dirname(abspath(__file__)))+"/crawls_"+time_str+"/"
+    manager_params["data_directory"] = save_path+'/'
+    manager_params["log_directory"] = save_path+'/'
     manager_params["memory_watchdog"] = True
     manager_params["process_watchdog"] = True
 
@@ -64,7 +44,7 @@ def helper_run(save_path, sites, extension_flags):
     # Commands time out by default after 60 seconds
     manager = TaskManager.TaskManager(manager_params, browser_params)
 
-    # Visits the sites
+    # Visits the sites by spawning a firefox instance in the background
     for site in sites:
 
         # Parallelize sites over all number of browsers set above.
