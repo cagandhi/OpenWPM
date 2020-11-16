@@ -1,11 +1,13 @@
-from openwpm import CommandSequence, TaskManager
+from automation import CommandSequence, TaskManager
+from os.path import abspath, dirname
+import time, datetime
 
 # The list of sites that we wish to crawl
 NUM_BROWSERS = 1
 sites = [
-    "http://www.example.com",
-    "http://www.princeton.edu",
-    "http://citp.princeton.edu/",
+    "https://www.cnn.com",
+    "https://www.nytimes.com",
+    "https://news.yahoo.com",
 ]
 
 # Loads the default manager params
@@ -28,14 +30,33 @@ for i in range(NUM_BROWSERS):
     browser_params[i]["dns_instrument"] = True
 
 
+# # Modify custom browser flags - refer https://github.com/mozilla/OpenWPM#browser-configuration-options
+for i in range(NUM_BROWSERS):
+#     # Enable "do not track" in browser
+#     browser_params[i]["donottrack"] = True
+    # Enable "ghostery" in browser
+    browser_params[i]["ghostery"] = True
+#     # Enable "disconnect" in browser
+#     browser_params[i]["disconnect"] = True
+#     # Enable "https-everywhere" in browser
+#     browser_params[i]["https-everywhere"] = True
+#     # Enable "ublock-origin" in browser
+#     browser_params[i]["ublock-origin"] = True
+#     # Enable "tracking-protection" in browser
+#     # browser_params[i]["tracking-protection"] = True
+
+
 # Launch only browser 0 headless
 browser_params[0]["display_mode"] = "headless"
 
+# fetch current date and time for folder name
+dt=datetime.datetime.now()
+time_str=time.strftime('%Y_%m_%d_%H_%M_%S')
+
 # Update TaskManager configuration (use this for crawl-wide settings)
-manager_params["data_directory"] = "~/Desktop/"
-manager_params["log_directory"] = "~/Desktop/"
-manager_params["memory_watchdog"] = True
-manager_params["process_watchdog"] = True
+manager_params["data_directory"] = dirname(dirname(abspath(__file__)))+"/crawls_"+time_str+"/"
+manager_params["log_directory"] = dirname(dirname(abspath(__file__)))+"/crawls_"+time_str+"/"
+#"~/Documents/my_project/OpenWPM1/OpenWPM_crawls/"
 
 # Instantiates the measurement platform
 # Commands time out by default after 60 seconds
@@ -59,3 +80,4 @@ for site in sites:
 
 # Shuts down the browsers and waits for the data to finish logging
 manager.close()
+
