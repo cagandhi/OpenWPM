@@ -11,10 +11,10 @@ time_path=dirname(dirname(abspath(__file__)))+'/crawls/'+time_str
 if not os.path.exists(time_path):
 	os.makedirs(time_path)
 
-sites_dir={'news': ['https://www.cnn.com','https://www.news.yahoo.com','https://www.washingtonpost.com'], 'shopping': [], 'sports': []}
+sites_dir={'news': ['https://www.cnn.com','https://www.news.yahoo.com','https://www.washingtonpost.com'], 'shopping': ['https://www.amazon.com/','https://www.alibaba.com/','https://www.ebay.com/'], 'sports': ['https://www.espn.com/','https://www.goal.com/','https://sports.yahoo.com/']}
 extensions_names=['noextension', 'ghostery', 'disconnect', 'ublock-origin', 'https-everywhere'] 
 # {'noextension': False, 'ghostery': False, 'disconnect': False, 'ublock-origin': False, 'https-everywhere': False}
-runs=1
+runs=5
 
 # loop over category
 for category, sites in sites_dir.items():
