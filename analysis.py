@@ -110,7 +110,7 @@ def run_single():
     # data_dir = main_dir+'/crawls_2020_11_15_18_07_51/'
     # data_dir = main_dir+'/crawls_2020_11_15_18_03_26/'
     # data_dir = main_dir+'/crawls_2020_11_15_18_00_12/'
-
+    
     database = data_dir+'crawl-data.sqlite'
     
     print('\n--- '+data_dir+' ---')

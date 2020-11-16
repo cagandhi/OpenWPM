@@ -6,7 +6,9 @@ import time, datetime
 NUM_BROWSERS = 1
 sites = [	
     "https://www.cnn.com",	
-    # "https://www.nytimes.com",	
+    # "https://www.nytimes.com",
+    # "https://www.cnn.com",	
+    "https://www.nytimes.com",	
     # "https://news.yahoo.com",	
 ]
 
