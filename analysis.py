@@ -6,9 +6,9 @@ import os
 from sqlite3 import Error
 from os.path import abspath, dirname
 
-website_dict={"https://www.cnn.com":1, 
-                "https://www.nytimes.com":2,
-                "https://news.yahoo.com":3}
+website_dict={"https://www.cnn.com":1, }
+                # "https://www.nytimes.com":2,
+                # "https://news.yahoo.com":3}
 
 def create_connection(db_file):
     conn = None
@@ -102,7 +102,7 @@ def get_third_party_requests(conn, domain, site):
 def run_single():
     main_dir = dirname(dirname(abspath(__file__)))
     # data_dir = main_dir+'/crawls_2020_11_15_15_09_38_ghostery_on/'
-    data_dir = main_dir+'/crawls_2020_11_15_15_55_34/'
+    data_dir = main_dir+'/crawls_2020_11_15_22_34_34/'
     # data_dir = main_dir+'/crawls_2020_11_15_17_47_23_ghostery_on/'
 
     # data_dir = main_dir+'/crawls_2020_11_15_18_14_06/'
