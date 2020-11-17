@@ -3,6 +3,7 @@ import sqlite3
 import tld
 import os
 import glob
+import sys
 
 from sqlite3 import Error
 from os.path import abspath, dirname
@@ -107,8 +108,8 @@ def get_data_run(run_path, category):
 # fetch final analysis dictionary in output
 def run_analysis(time_folder_name):
     # fetch time path; root folder is based on execution datetime
-    time_path=dirname(dirname(abspath(__file__)))+'/crawls/'+time_folder_name
-    
+    time_path=dirname(dirname(abspath(__file__)))+time_folder_name
+    print("Fetching results from: "+str(time_path))
     # for every category
     for category_name in os.listdir(time_path):
 
@@ -159,5 +160,5 @@ def run_analysis(time_folder_name):
 
 
 if __name__ == '__main__':
-    time_folder_name='2020_11_16_17_50_24'
+    time_folder_name=sys.argv[1]
     run_analysis(time_folder_name)

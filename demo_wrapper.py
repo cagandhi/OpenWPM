@@ -5,7 +5,7 @@ from demo_helper import helper_run
 
 sites_dir={'news': ['https://www.cnn.com','https://www.news.yahoo.com','https://www.washingtonpost.com'], 'shopping': ['https://www.amazon.com/','https://www.alibaba.com/','https://www.ebay.com/'], 'sports': ['https://www.espn.com/','https://www.goal.com/','https://sports.yahoo.com/']}
 extensions_names=['noextension', 'ghostery', 'disconnect', 'ublock-origin', 'https-everywhere'] 
-runs=5
+runs=10
 
 # make time folder; this will be our root folder and used to distinguish runs
 dt=datetime.datetime.now()
